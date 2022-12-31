@@ -9,7 +9,7 @@ public class CurrentAccount extends BankAccount{
     public CurrentAccount(String name, double balance, String tradeLicenseId) throws Exception {
         // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
         super(name,balance,5000);
-        if(balance<getMinBalance()){
+        if( (balance) < (getMinBalance()) ){
             throw new myException("Insufficient Balance");
         }
         this.tradeLicenseId=tradeLicenseId;
@@ -22,7 +22,7 @@ public class CurrentAccount extends BankAccount{
         // If it is not possible, throw "Valid License can not be generated" Exception
         int idLength=tradeLicenseId.length();
         boolean even=false;
-        if(idLength%2==0){
+        if((idLength%2)==0){
             even=true;
         }
         HashMap<Character,Integer> freq=new HashMap<>();
@@ -30,7 +30,7 @@ public class CurrentAccount extends BankAccount{
             freq.put(tradeLicenseId.charAt(i),freq.getOrDefault(tradeLicenseId.charAt(i),0)+1);
         }
         for(int val:freq.values()){
-            if((even&&val>idLength/2)||(!even&&val>(idLength/2)+1)){
+            if( ( even && (val>idLength/2) ) || (!even && (val>((idLength/2)+1)) ) ){
                 throw new myException("Valid License can not be generated");
             }
         }
@@ -40,7 +40,4 @@ public class CurrentAccount extends BankAccount{
         return tradeLicenseId;
     }
 
-    public void setTradeLicenseId(String tradeLicenseId) {
-        this.tradeLicenseId = tradeLicenseId;
-    }
 }

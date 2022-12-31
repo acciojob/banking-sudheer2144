@@ -20,13 +20,13 @@ public class BankAccount {
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
         //If it is not possible, throw "Account Number can not be generated" exception
-        if(digits==1&&sum<10){
+        if((digits==1) && (sum<10)){
             return Integer.toString(sum);
         }
         int digit=0;
         int count=0;
         String accNumber="";
-        if(sum%2!=0){
+        if((sum%2) != 0){
             sum-=1;
             accNumber+="1";
             digits-=1;
@@ -38,18 +38,18 @@ public class BankAccount {
                 digit=i;
                 break;
             }
-            if(tmp<digits&&tmp==Math.floor(tmp)){
+            if((tmp<digits) && (tmp==Math.floor(tmp))){
                 digit=i;
                 count=(int)tmp;
                 break;
             }
         }
-        if(digit==0||digit==1||count==1||count==0){
+        if((digit==0) || (digit==1) || (count==1) || (count==0)){
             throw new myException("Account Number can not be generated");
         }
 
         for(int i=1;i<=digits;i++){
-            if(i<=count){
+            if(i <= count){
                 accNumber+=Integer.toString(digit);
             }
             else{
@@ -61,16 +61,16 @@ public class BankAccount {
 
     public void deposit(double amount) {
         //add amount to balance
-        balance+=amount;
-
+        this.balance+=amount;
     }
 
     public void withdraw(double amount) throws Exception {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
-        if ((balance - amount) < minBalance) {
+        if ((this.balance - amount) < (this.minBalance)) {
             throw new myException("Insufficient Balance");
+        }else {
+            this.balance=this.balance-amount;
         }
-        balance=balance-amount;
     }
 
     public String getName() {
@@ -85,15 +85,4 @@ public class BankAccount {
         return minBalance;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public void setMinBalance(double minBalance) {
-        this.minBalance = minBalance;
-    }
 }

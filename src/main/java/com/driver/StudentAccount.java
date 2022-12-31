@@ -14,7 +14,4 @@ public class StudentAccount extends BankAccount{
         return institutionName;
     }
 
-    public void setInstitutionName(String institutionName) {
-        this.institutionName = institutionName;
-    }
 }
